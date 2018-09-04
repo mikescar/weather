@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "dev": "./node_modules/nodemon/bin/nodemon.js ./bin/www",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -12,5 +13,8 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
