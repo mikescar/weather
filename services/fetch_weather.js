@@ -9,7 +9,7 @@ module.exports = function FetchWeather () {
   const apiKey = process.env.API_KEY_OPENWEATHERMAP
   const apiURI = 'http://api.openweathermap.org/data/2.5/weather'
 
-  var that = this
+  const that = this
   this.resolve = null
   this.reject = null
   this.response = null
@@ -25,7 +25,7 @@ module.exports = function FetchWeather () {
   }
 
   function fetchWeatherInfo (cityName, units) {
-    let key = `openweathermap_city_${units}_${md5(cityName)}`
+    const key = `openweathermap_city_${units}_${md5(cityName)}`
 
     return cache.get(key)
       .then(value => {
@@ -44,16 +44,16 @@ module.exports = function FetchWeather () {
   }
 
   function requestWeather (cityName, units) {
-    console.log('Going to call API for ', apiKey, cityName, units)
+    console.log('Going to call API for ', cityName, units)
 
-    let options = {
+    const options = {
       uri: apiURI,
       qs: {
         appid: apiKey,
         q: cityName,
-        units: units
+        units: units,
       },
-      json: true
+      json: true,
     }
     return RequestPromise.get(options)
   }
@@ -77,7 +77,7 @@ module.exports = function FetchWeather () {
   }
 
   function parseResponse () {
-    let body = that.response
+    const body = that.response
 
     return {
       cityName: body.name,
@@ -88,7 +88,7 @@ module.exports = function FetchWeather () {
       sunset: new Date(body.sys.sunset * 1000).toLocaleTimeString(),
       temp: body.main.temp,
       tempHigh: body.main.temp_max,
-      tempLow: body.main.temp_min
+      tempLow: body.main.temp_min,
     }
   }
 }

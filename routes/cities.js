@@ -4,10 +4,10 @@ const router = express.Router()
 const FetchWeather = require('../services/fetch_weather.js')
 
 router.get('/:city', (req, res, next) => {
-  let city = req.params.city
+  const city = req.params.city
   new FetchWeather().run(city, 'imperial')
-    .then(weather => res.render('index', {userinfo: req.userinfo, weather: weather, error: null}))
-    .catch(error => res.render('index', {userinfo: req.userinfo, weather: null, error: error}))
+    .then(weather => res.render('index', { userinfo: req.userinfo, weather: weather, error: null }))
+    .catch(error => res.render('index', { userinfo: req.userinfo, weather: null, error: error }))
 })
 
 // router.post('/', (req, res, next) => {
