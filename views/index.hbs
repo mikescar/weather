@@ -1,2 +1,101 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Proof-of-concept node application that fetches weather for a given city.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <title>Gimme Weather</title>
+  </head>
+  <body>
+    <div class="container-fluid header-top">
+      <div class="container">
+        <div class="row justify-content-md-right">
+          <div class="col-3 logo">
+            <a href="/">Gimme Weather</a>
+          </div>
+          <div class="col-7"></div>
+          <div class="col-2">
+            {{#if userinfo}}
+              Hello, {{userinfo.given_name}}!
+              | <a href="/logout">Sign Out</a>
+            {{else}}
+              <a href="/login">Sign In</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid header">
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+            <a href="/cities/seattle">Seattle, WA</a>
+          </div>
+          <div class="col-2">
+            <a href="/cities/denver">Denver, CO</a>
+          </div>
+          <div class="col-2">
+            <a href="/cities/richmond">Richmond, VA</a>
+          </div>
+          <div class="col-2">
+            <a href="/cities/barcelona">Barcelona, ES</a>
+          </div>
+          <div class="col"></div>
+          {{#if userinfo}}
+            <div class="col-3">
+              <fieldset>
+                <form action="/" method="post">
+                  <div class="input-group">
+                    <input type="text" name="city" class="form-control mp-0" placeholder="Enter a City" aria-label="Enter a City" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button">Go</button>
+                    </div>
+                  </div>
+                </form>
+              </fieldset>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-5">
+          {{#if weather}}
+            <h2>{{weather.cityName}}</h2>
+            <h4>Now:</h4>
+            <div class="city-box">
+              <div>{{weather.description}}</div>
+              <div>
+                Temp: {{weather.temp}} &#x2109;
+                (Low: {{weather.tempLow}} / High: {{weather.tempHigh}})
+              </div>
+              <div>Humidity: {{weather.humidity}}%</div>
+              <div>Sunrise:  {{weather.sunrise}}</div>
+              <div>Sunset:   {{weather.sunset}}</div>
+            </div>
+          {{/if}}
+          {{#if error}}
+            <div>{{error}}</div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>If you don't have an account, you can <a href="/register">register for free</a>.</p>
+          <p>Registering allows you to search any city, save cities, and receive alerts.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
