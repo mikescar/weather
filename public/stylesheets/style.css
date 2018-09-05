@@ -28,9 +28,15 @@
   font-size: 14px;
 }
 
-.main-content {
+.content-index, .content-register {
   min-height: 600px;
   padding: 50px 0;
+}
+
+label.error {
+  padding: 10px 0;
+  color: red;
+  max-width: 75%;
 }
 
 .footer {
