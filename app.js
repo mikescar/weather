@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index')
 const citiesRouter = require('./routes/cities')
 const dashboardRouter = require('./routes/dashboard')
 const registerRouter = require('./routes/register')
+const resetPasswordRouter = require('./routes/reset-password')
 
 const app = express()
 
@@ -42,6 +43,7 @@ app.use('/', indexRouter)
 app.use('/cities', citiesRouter)
 app.use('/dashboard', oidc.ensureAuthenticated(), dashboardRouter)
 app.use('/register', registerRouter)
+app.use('/reset-password', resetPasswordRouter)
 app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
