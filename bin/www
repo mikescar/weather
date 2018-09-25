@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load()
+}
+
 /**
  * Module dependencies.
  */
-
-require('dotenv').config()
 const { app, oidc } = require('../app')
 const debug = require('debug')('weather:server')
 const http = require('http')
