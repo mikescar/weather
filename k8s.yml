@@ -43,7 +43,6 @@ spec:
           - name: APP_SECRET
             valueFrom:
               secretKeyRef:
-                namespace: weather
                 name: sessions
                 key: app_secret
           - name: OKTA_ORG_URL
