@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: ${GCLOUD_PROJECT_NAME}
+  name: ${APP_NAME}
 spec:
   selector:
-    app: ${GCLOUD_PROJECT_NAME}
+    app: ${APP_NAME}
   ports:
   - protocol: TCP
     port: 80
@@ -14,22 +14,22 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: ${GCLOUD_PROJECT_NAME}
+  name: ${APP_NAME}
   labels:
-    app: ${GCLOUD_PROJECT_NAME}
+    app: ${APP_NAME}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ${GCLOUD_PROJECT_NAME}
+      app: ${APP_NAME}
   template:
     metadata:
       labels:
-        app: ${GCLOUD_PROJECT_NAME}
+        app: ${APP_NAME}
     spec:
       containers:
-      - name: ${GCLOUD_PROJECT_NAME}
-        image: ${GCLOUD_REGISTRY_DOMAIN}/${GOOGLE_PROJECT_ID}/${GCLOUD_PROJECT_NAME}:${CIRCLE_SHA1}
+      - name: ${APP_NAME}
+        image: ${GCLOUD_REGISTRY_DOMAIN}/${GOOGLE_PROJECT_ID}/${APP_NAME}:${CIRCLE_SHA1}
         ports:
         - name: http
           containerPort: 3000
