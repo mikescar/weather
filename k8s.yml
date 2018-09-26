@@ -1,0 +1,67 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${APP_NAME}
+spec:
+  selector:
+    app: ${APP_NAME}
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  labels:
+    app: ${APP_NAME}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ${APP_NAME}
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+    spec:
+      containers:
+      - name: ${APP_NAME}
+        image: ${GCLOUD_REGISTRY_DOMAIN}/${GCLOUD_PROJECT_ID}/${APP_NAME}:${CIRCLE_SHA1}
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        env:
+          - name: API_KEY_OPENWEATHERMAP
+            valueFrom:
+              secretKeyRef:
+                name: openweathermap
+                key: API_KEY_OPENWEATHERMAP
+          - name: APP_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: sessions
+                key: app_secret
+          - name: OKTA_ORG_URL
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: org_url
+          - name: OKTA_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: client_id
+          - name: OKTA_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: client_secret
+          - name: OKTA_REGISTRATION_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: registration_token
