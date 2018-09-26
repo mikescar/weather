@@ -34,3 +34,9 @@ spec:
         - name: http
           containerPort: 3000
           protocol: TCP
+        env:
+          - name: API_KEY_OPENWEATHERMAP
+            valueFrom:
+              secretKeyRef:
+                name: openweathermap
+                key: API_KEY_OPENWEATHERMAP
