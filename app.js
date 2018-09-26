@@ -14,11 +14,13 @@ const resetPasswordRouter = require('./routes/reset-password')
 
 const app = express()
 
+const HOST_URL = process.env.HOST_URL || "http://${WEATHER_SERVICE_HOST}"
+
 const oidc = new ExpressOIDC({
   issuer: `${process.env.OKTA_ORG_URL}/oauth2/default`,
   client_id: process.env.OKTA_CLIENT_ID,
   client_secret: process.env.OKTA_CLIENT_SECRET,
-  redirect_uri: `${process.env.HOST_URL}/authorization-code/callback`,
+  redirect_uri: `${HOST_URL}/authorization-code/callback`,
   scope: 'openid profile',
 })
 
