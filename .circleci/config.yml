@@ -23,6 +23,8 @@ jobs:
   deploy_to_staging:
     docker:
       - image: google/cloud-sdk
+    environment:
+      NODE_ENV: 'production'
     steps:
       - checkout
       - run:
@@ -49,6 +51,7 @@ jobs:
           name: Deploy to Kubernetes
           command: |
             envsubst < ${HOME}/project/k8s.yml > ${HOME}/patched_k8s.yml
+            cat ${HOME}/patched_k8s.yml
             kubectl apply -f ${HOME}/patched_k8s.yml
             kubectl rollout status deployment/${GCLOUD_PROJECT_NAME}
 
