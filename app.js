@@ -14,7 +14,7 @@ const resetPasswordRouter = require('./routes/reset-password')
 
 const app = express()
 
-const HOST_URL = process.env.HOST_URL || `http://${WEATHER_SERVICE_HOST}`
+const HOST_URL = process.env.HOST_URL || `http://${process.env.WEATHER_SERVICE_HOST}`
 
 const oidc = new ExpressOIDC({
   issuer: `${process.env.OKTA_ORG_URL}/oauth2/default`,
