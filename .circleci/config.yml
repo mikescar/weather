@@ -42,6 +42,7 @@ jobs:
           command: |
             docker build \
               --build-arg COMMIT_HASH=${CIRCLE_SHA1} \
+              --build-arg BRANCH=${CIRCLE_BRANCH} \
               --build-arg BUILD_DATE=`date -u +”%Y-%m-%dT%H:%M:%SZ”` \
               -t ${APP_NAME} .
             docker tag ${APP_NAME} ${GCLOUD_REGISTRY_DOMAIN}/${GCLOUD_PROJECT_ID}/${APP_NAME}:${CIRCLE_SHA1}
