@@ -40,3 +40,23 @@ spec:
               secretKeyRef:
                 name: openweathermap
                 key: API_KEY_OPENWEATHERMAP
+          - name: OKTA_ORG_URL
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: org_url
+          - name: OKTA_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: client_id
+          - name: OKTA_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: client_secret
+          - name: OKTA_REGISTRATION_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: okta
+                key: registration_token
