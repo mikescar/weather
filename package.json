@@ -20,7 +20,7 @@
     "js-md5": "^0.7.3",
     "lodash": "^4.17.13",
     "morgan": "~1.9.1",
-    "node-cache-promise": "^1.0.0",
+    "node-cache-promise": "^1.0.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
