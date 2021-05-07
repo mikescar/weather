@@ -18,7 +18,7 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.7.3",
     "js-md5": "^0.7.3",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.21",
     "morgan": "~1.9.1",
     "node-cache-promise": "^1.0.0",
     "request": "^2.88.0",
